@@ -1,2 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/vincent/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.0/748f0546d5c3c27f1aef07270ffea0c45f0c42a4/rxjava-1.1.0.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="748f0546d5c3c27f1aef07270ffea0c45f0c42a4">
+        <dex dex="/media/data/androidstudio/JunkCalls/app/build/intermediates/pre-dexed/debug/rxjava-1.1.0-8e16c8bc3dc92d3a1c530b4f9686ce385f68429b.jar" />
+    </item>
+    <item
+        jar="/media/data/androidstudio/JunkCalls/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.0.2/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="be898ca891b67590d220d47dbe55b40279125be7">
+        <dex dex="/media/data/androidstudio/JunkCalls/app/build/intermediates/pre-dexed/debug/classes-7f0a80080cb1917f0e988f42040deae83a14564c.jar" />
+    </item>
+    <item
+        jar="/media/data/androidstudio/JunkCalls/app/libs/jsoup-1.8.3.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
+        <dex dex="/media/data/androidstudio/JunkCalls/app/build/intermediates/pre-dexed/debug/jsoup-1.8.3-9106c5238c741895b7a114ced2f75df402511c91.jar" />
+    </item>
+
+</items>

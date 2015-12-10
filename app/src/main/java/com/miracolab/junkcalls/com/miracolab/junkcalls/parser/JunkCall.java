@@ -23,4 +23,16 @@ public class JunkCall {
     public static JunkCall create(CallType type, String phone, String description) {
         return new JunkCall(type, phone, description);
     }
+
+    public static JunkCall create(String phone, String description) {
+        return new JunkCall(CallType.NORMAL, phone, description);
+    }
+
+    public String phoneNumber() {
+        return mPhoneCall;
+    }
+
+    public String description() {
+        return mDescription;
+    }
 }
