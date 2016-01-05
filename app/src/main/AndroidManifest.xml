@@ -20,10 +20,14 @@
             </intent-filter>
         </activity>
 
+        <service android:name=".JunkCallService"
+            android:exported="false" />
+
         <receiver android:name=".PhoneCallReceiver"
             android:enabled="true">
             <!--<action android:name="android.intent.action.PHONE_STATE" /> -->
             <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
                 <action android:name="abc.action.FAKE_CALL" />
             </intent-filter>
 
