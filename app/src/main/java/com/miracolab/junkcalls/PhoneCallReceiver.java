@@ -7,7 +7,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 
 import com.miracolab.junkcalls.utils.NetworkUtil;
-import com.miracolab.junkcalls.utils.SharedPreferencesUtil;
 
 /**
  * Created by vincent on 2015/12/8.
@@ -15,7 +14,7 @@ import com.miracolab.junkcalls.utils.SharedPreferencesUtil;
 public class PhoneCallReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        boolean isWifiOnly = SharedPreferencesUtil.getBoolean(context, "wifi_only", true);
+        boolean isWifiOnly = context.getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("wifi_only", true);
         if(NetworkUtil.isNetworkConnected(context, isWifiOnly)) {
             handleIncomingCall(context, intent);
         }

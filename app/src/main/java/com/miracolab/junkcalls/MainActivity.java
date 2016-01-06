@@ -1,11 +1,11 @@
 package com.miracolab.junkcalls;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.CheckBox;
 
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
-import com.miracolab.junkcalls.utils.SharedPreferencesUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,11 +18,17 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         final CheckBox checkBox = (CheckBox) findViewById(R.id.wifi_only);
+        boolean check = getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("wifi_only", true);
+        checkBox.setChecked(check);
+
         RxCompoundButton
                 .checkedChanges(checkBox)
                 .throttleWithTimeout(500L, TimeUnit.MILLISECONDS)
                 .subscribe(checked -> {
-                    SharedPreferencesUtil.set(MainActivity.this, "wifi_only", checked);
+                    getSharedPreferences("settings", Context.MODE_PRIVATE)
+                            .edit()
+                            .putBoolean("wifi_only", checked)
+                            .apply();
                 });
     }
 

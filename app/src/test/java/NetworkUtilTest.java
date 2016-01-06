@@ -64,21 +64,21 @@ public class NetworkUtilTest {
     public void isNetworkConnected2() {
         ConnectivityManager mgr = (ConnectivityManager) RuntimeEnvironment.application.getSystemService(Context.CONNECTIVITY_SERVICE);
         ShadowConnectivityManager smgr = shadowOf(mgr);
-//
-//        setActiveNetworkState(smgr, ConnectivityManager.TYPE_MOBILE, true);
-//        assertTrue(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, false));
-//
-//        setActiveNetworkState(smgr, ConnectivityManager.TYPE_MOBILE, true);
-//        assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
-//
-//        setActiveNetworkState(smgr, ConnectivityManager.TYPE_WIFI, false);
-//        assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
-//
-//        setActiveNetworkState(smgr, ConnectivityManager.TYPE_WIFI, true);
-//        assertTrue(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
-//
-//        smgr.setActiveNetworkInfo(null);
-//        assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, false));
+
+        setActiveNetworkState(smgr, ConnectivityManager.TYPE_MOBILE, true);
+        assertTrue(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, false));
+
+        setActiveNetworkState(smgr, ConnectivityManager.TYPE_MOBILE, true);
+        assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
+
+        setActiveNetworkState(smgr, ConnectivityManager.TYPE_WIFI, false);
+        assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
+
+        setActiveNetworkState(smgr, ConnectivityManager.TYPE_WIFI, true);
+        assertTrue(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
+
+        smgr.setActiveNetworkInfo(null);
+        assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, false));
 
         smgr.setActiveNetworkInfo(null);
         assertFalse(NetworkUtil.isNetworkConnected(RuntimeEnvironment.application, true));
@@ -88,12 +88,12 @@ public class NetworkUtilTest {
     public void isWifiNetwork() {
         ConnectivityManager mgr = (ConnectivityManager) RuntimeEnvironment.application.getSystemService(Context.CONNECTIVITY_SERVICE);
         ShadowConnectivityManager smgr = shadowOf(mgr);
-//
-//        setActiveNetworkState(smgr, ConnectivityManager.TYPE_MOBILE, true);
-//        assertFalse(NetworkUtil.isWifiNetwork(RuntimeEnvironment.application));
-//
-//        setActiveNetworkState(smgr, ConnectivityManager.TYPE_WIFI, true);
-//        assertTrue(NetworkUtil.isWifiNetwork(RuntimeEnvironment.application));
+
+        setActiveNetworkState(smgr, ConnectivityManager.TYPE_MOBILE, true);
+        assertFalse(NetworkUtil.isWifiNetwork(RuntimeEnvironment.application));
+
+        setActiveNetworkState(smgr, ConnectivityManager.TYPE_WIFI, true);
+        assertTrue(NetworkUtil.isWifiNetwork(RuntimeEnvironment.application));
 
         smgr.setActiveNetworkInfo(null);
         assertFalse(NetworkUtil.isWifiNetwork(RuntimeEnvironment.application));

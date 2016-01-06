@@ -16,7 +16,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by vincent on 2015/12/8.
@@ -35,13 +37,6 @@ public class JunkCallParser {
                 .filter(s -> !TextUtils.isEmpty(s))
                 .map(desc -> JunkCall.create(number, desc))
                 .retry(1);
-    }
-
-    private static String log(String content) {
-        if (LOG) {
-            LogUtil.v(TAG, content);
-        }
-        return content;
     }
 
     private static Observable<String> getContent(String url) {

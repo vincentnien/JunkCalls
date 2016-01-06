@@ -28,6 +28,14 @@ public class FloatingWindow {
         initView(context);
     }
 
+    public View getView() {
+        return mView;
+    }
+
+    public boolean isEnded() {
+        return isEnded;
+    }
+
     public void setMissingCall(Context context) {
         // TODO: show another floating view
         isEnded = true;
