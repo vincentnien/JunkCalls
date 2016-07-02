@@ -31,8 +31,5 @@ public class JunkCallParserTest {
                 .subscribe(subscriber);
         subscriber.assertNoErrors();
         subscriber.assertValueCount(1);
-//                .subscribe(junks -> {
-//                    assertTrue(junks.size() >= 2);
-//                });
     }
 }

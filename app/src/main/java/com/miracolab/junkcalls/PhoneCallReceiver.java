@@ -12,6 +12,7 @@ import com.miracolab.junkcalls.utils.NetworkUtil;
  * Created by vincent on 2015/12/8.
  */
 public class PhoneCallReceiver extends BroadcastReceiver {
+
     @Override
     public void onReceive(Context context, Intent intent) {
         boolean isWifiOnly = context.getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("wifi_only", true);
