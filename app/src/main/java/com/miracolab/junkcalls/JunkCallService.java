@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.miracolab.junkcalls.parser.JunkCall;
 import com.miracolab.junkcalls.parser.JunkCallParser;
+import com.miracolab.junkcalls.provider.LocalDbHelper;
+import com.miracolab.junkcalls.provider.vo.Record;
 import com.miracolab.junkcalls.rx.RxBroadcastReceiver;
 import com.miracolab.junkcalls.utils.FloatingWindow;
 import com.miracolab.junkcalls.utils.LogUtil;
@@ -17,6 +19,7 @@ import rx.Observable;
 import java.util.List;
 
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static android.telephony.TelephonyManager.*;
@@ -63,11 +66,19 @@ public class JunkCallService extends Service {
         );
 
         String number = intent.getStringExtra(EXTRA_NUMBER);
-        startQuery(number)
-                .subscribe(
-                        junkCalls -> mWindow.setResult(JunkCallService.this, junkCalls, number),
-                        throwable -> Toast.makeText(this, throwable.toString(), Toast.LENGTH_SHORT).show()
-                );
+        startLocalQuery(number)
+                .subscribe(record -> {
+                    if(record.isValid()) {
+                        mWindow.setResult(JunkCallService.this, record);
+                    } else {
+                        // no data... query data from junkcall
+                        startQuery(number)
+                                .subscribe(
+                                        junkCalls -> mWindow.setResult(JunkCallService.this, junkCalls, number),
+                                        throwable -> Toast.makeText(JunkCallService.this, throwable.toString(), Toast.LENGTH_SHORT).show()
+                                );
+                    }
+                });
 
         return Service.START_NOT_STICKY;
     }
@@ -78,6 +89,11 @@ public class JunkCallService extends Service {
                 .map(intentWithContext -> intentWithContext.getIntent().getStringExtra(EXTRA_STATE))
                 .observeOn(AndroidSchedulers.mainThread())
                 .first();
+    }
+
+    public Observable<Record> startLocalQuery(String number) {
+        return LocalDbHelper.getRecord(this, number)
+                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public Observable<List<String>> startQuery(String number) {

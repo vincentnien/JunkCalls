@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.miracolab.junkcalls.R;
 import com.miracolab.junkcalls.parser.JunkCall;
+import com.miracolab.junkcalls.provider.vo.Record;
 
 import java.util.List;
 
@@ -40,6 +41,12 @@ public class FloatingWindow {
         // TODO: show another floating view
         isEnded = true;
         removeView(context);
+    }
+
+    public void setResult(Context context, Record record) {
+        if(!isEnded) {
+            setText(record.description, record.number + context.getString(R.string.report_count, record.report));
+        }
     }
 
     public void setResult(Context context, List<String> list, String number) {

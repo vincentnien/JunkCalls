@@ -24,6 +24,11 @@
         <service android:name=".JunkCallService"
             android:exported="false" />
 
+        <provider
+            android:authorities="com.miracolab.junkcalls.provider"
+            android:name=".provider.JunkcallProvider"
+            android:exported="false"/>
+        
         <receiver android:name=".PhoneCallReceiver"
             android:enabled="true">
             <intent-filter>
